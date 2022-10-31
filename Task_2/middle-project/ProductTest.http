@@ -2,8 +2,13 @@ POST http://127.0.0.1:8080/product
 Content-Type: application/json
 
 {
-  "id": 123,
+  "id": 123123,
   "name": "bigos",
   "mass": "300",
   "country": "Poland"
 }
+
+
+
+
+

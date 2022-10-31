@@ -12,4 +12,6 @@ interface DAOFacade {
     suspend fun deleteCustomer(id: Int): Boolean
     suspend fun allProducts(): List<Product>
     suspend fun addNewProduct(id: Int, name: String, mass: Double, country: String): Product?
+
+    suspend fun product(id: Int): Product?
 }

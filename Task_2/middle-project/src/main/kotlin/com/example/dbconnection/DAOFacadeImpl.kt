@@ -71,6 +71,13 @@ class DAOFacadeImpl : DAOFacade {
 
         toBeInserted.resultedValues?.singleOrNull()?.let(::resultRowToProduct)
     }
+
+    override suspend fun product(id: Int): Product? = dbQuery {
+        Products
+            .select {Products.id eq id}
+            .map(::resultRowToProduct)
+            .singleOrNull()
+    }
 }
 
 val dao: DAOFacade = DAOFacadeImpl().apply {
