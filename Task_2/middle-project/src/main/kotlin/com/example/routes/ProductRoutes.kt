@@ -1,6 +1,7 @@
 package com.example.routes
 
 import com.example.dbconnection.dao
+import com.example.models.Country
 import com.example.models.Customer
 import com.example.models.Product
 import com.example.models.Products
@@ -24,40 +25,24 @@ fun Route.productRouting() {
                 status = HttpStatusCode.BadRequest
             )
 
-            call.respond(dao.customer(id.toInt()).toString())
+            call.respond(dao.product(id.toInt()).toString())
         }
         post {
             val product = call.receive<Product>()
             dao.addNewProduct(product.id, product.name, product.mass, product.country)
             call.respond(product)
         }
-    }
 
-//        get("{id?}") {
-//            val id = call.parameters["id"] ?: return@get call.respondText(
-//                "Missing id",
-//                status = HttpStatusCode.BadRequest
-//            )
-//            val customer =
-//                customerStorage.find { it.id == id } ?: return@get call.respondText(
-//                    "No customer with id $id",
-//                    status = HttpStatusCode.NotFound
-//                )
-//            call.respond(customer)
-//        }
-//
-//        post {
-//                val customer = call.receive<Customer>()
-//                customerStorage.add(customer)
-//                call.respondText("Customer stored correctly", status = HttpStatusCode.Created)
-//        }
-//
-//        delete("{id?}") {
-//            val id = call.parameters["id"] ?: return@delete call.respond(HttpStatusCode.BadRequest)
-//            if (customerStorage.removeIf { it.id == id }) {
-//                call.respondText("Customer removed correctly", status = HttpStatusCode.Accepted)
-//            } else {
-//                call.respondText("Not Found", status = HttpStatusCode.NotFound)
-//            }
-//        }
+        put {
+            val product = call.receive<Product>()
+            dao.editProduct(product.id, product.name, product.mass, product.country)
+            call.respond(product)
+        }
+
+        delete("{id?}") {
+            val id = call.parameters["id"] ?: return@delete call.respond(HttpStatusCode.BadRequest)
+            dao.deleteProduct(id.toInt())
+            call.respond(HttpStatusCode.OK)
+        }
+    }
 }

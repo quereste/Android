@@ -6,18 +6,18 @@ import com.example.models.Customers
 import com.example.models.Product
 
 interface DAOFacade {
-    suspend fun allCustomers(): List<Customer>
-    suspend fun customer(id: Int): Customer?
-    suspend fun addNewCustomer(id: Int, firstName: String, lastName: String, email: String): Customer?
-    suspend fun editCustomer(id: Int, firstName: String, lastName: String, email: String): Boolean
-    suspend fun deleteCustomer(id: Int): Boolean
     suspend fun allProducts(): List<Product>
     suspend fun addNewProduct(id: Int, name: String, mass: Double, country: String): Product?
 
     suspend fun product(id: Int): Product?
 
+    suspend fun editProduct(id: Int, name: String, mass: Double, country: String): Boolean
+    suspend fun deleteProduct(id: Int): Boolean
+
     suspend fun allCountries(): List<Country>
     suspend fun addNewCountry(name: String, distance: Double, president: String, surface: Double): Country?
 
     suspend fun country(name: String): Country?
+    suspend fun editCountry(name: String, distance: Double, president: String, surface: Double): Boolean
+    suspend fun deleteCountry(name: String): Boolean
 }

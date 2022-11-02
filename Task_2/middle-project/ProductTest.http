@@ -3,7 +3,7 @@ POST http://127.0.0.1:8080/product
 Content-Type: application/json
 
 {
-  "id": 1231212332,
+  "id": 100,
   "name": "bigos",
   "mass": "300",
   "country": "Poland"
@@ -14,7 +14,7 @@ POST http://127.0.0.1:8080/product
 Content-Type: application/json
 
 {
-  "id": 1534,
+  "id": 153400,
   "name": "bigos",
   "mass": "300",
   "country": "Germany"

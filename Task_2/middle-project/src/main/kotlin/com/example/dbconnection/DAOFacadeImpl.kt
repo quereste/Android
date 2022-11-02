@@ -6,13 +6,6 @@ import kotlinx.coroutines.runBlocking
 import org.jetbrains.exposed.sql.*
 
 class DAOFacadeImpl : DAOFacade {
-    private fun resultRowToCustomer(row: ResultRow) = Customer(
-        id = row[Customers.id],
-        firstName = row[Customers.firstName],
-        lastName = row[Customers.lastName],
-        email = row[Customers.email],
-    )
-
     private fun resultRowToProduct(row: ResultRow) = Product(
         id = row[Products.id],
         name = row[Products.name],
@@ -26,41 +19,6 @@ class DAOFacadeImpl : DAOFacade {
         president = row[Countries.president],
         surface = row[Countries.surface],
     )
-
-    override suspend fun allCustomers(): List<Customer> = dbQuery {
-        Customers.selectAll().map(::resultRowToCustomer)
-    }
-
-    override suspend fun customer(id: Int): Customer? = dbQuery {
-        Customers
-            .select {Customers.id eq id}
-            .map(::resultRowToCustomer)
-            .singleOrNull()
-    }
-
-    override suspend fun addNewCustomer(id: Int, firstName: String, lastName: String, email: String): Customer? = dbQuery {
-        val toBeInserted = Customers.insert {
-         it[Customers.id] = id
-         it[Customers.firstName] = firstName
-         it[Customers.lastName] = lastName
-         it[Customers.email] = email
-        }
-
-        toBeInserted.resultedValues?.singleOrNull()?.let(::resultRowToCustomer)
-    }
-
-    override suspend fun editCustomer(id: Int, firstName: String, lastName: String, email: String): Boolean = dbQuery {
-        Customers.update({Customers.id eq id}) {
-            it[Customers.firstName] = firstName
-            it[Customers.lastName] = lastName
-            it[Customers.email] = email
-        } > 0
-    }
-
-    override suspend fun deleteCustomer(id: Int): Boolean = dbQuery {
-        Customers.deleteWhere { Customers.id eq id} > 0
-    }
-
     override suspend fun allProducts(): List<Product> = dbQuery {
         Products.selectAll().map(::resultRowToProduct)
     }
@@ -81,6 +39,18 @@ class DAOFacadeImpl : DAOFacade {
             .select {Products.id eq id}
             .map(::resultRowToProduct)
             .singleOrNull()
+    }
+
+    override suspend fun editProduct(id: Int, name: String, mass: Double, country: String): Boolean = dbQuery {
+        Products.update({Products.id eq id}) {
+            it[Products.name] = name
+            it[Products.mass] = mass
+            it[Products.country] = country
+        } > 0
+    }
+
+    override suspend fun deleteProduct(id: Int): Boolean = dbQuery {
+        Products.deleteWhere { Products.id eq id} > 0
     }
 
     override suspend fun allCountries(): List<Country> = dbQuery {
@@ -104,13 +74,22 @@ class DAOFacadeImpl : DAOFacade {
             .map(::resultRowToCountry)
             .singleOrNull()
     }
+
+    override suspend fun editCountry(name: String, distance: Double, president: String, surface: Double): Boolean = dbQuery {
+        Countries.update({Countries.name eq name}) {
+            it[Countries.distance] = distance
+            it[Countries.president] = president
+            it[Countries.surface] = surface
+        } > 0
+    }
+
+    override suspend fun deleteCountry(name: String): Boolean = dbQuery {
+        Countries.deleteWhere { Countries.name eq name} > 0
+    }
 }
 
 val dao: DAOFacade = DAOFacadeImpl().apply {
     runBlocking {
-        if(allCustomers().isEmpty()) {
-            addNewCustomer(1, "azer", "bejdżan", "mail.me@xd.xd")
-        }
 
         if(allCountries().isEmpty()) {
             addNewCountry("Poland", 0.0, "Mr. Andrzej Duda", 312710.0)
