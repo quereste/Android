@@ -1,10 +1,7 @@
 package com.example.dbconnection
 
 import com.example.dbconnection.DatabaseFactory.dbQuery
-import com.example.models.Customer
-import com.example.models.Customers
-import com.example.models.Product
-import com.example.models.Products
+import com.example.models.*
 import kotlinx.coroutines.runBlocking
 import org.jetbrains.exposed.sql.*
 
@@ -21,6 +18,13 @@ class DAOFacadeImpl : DAOFacade {
         name = row[Products.name],
         mass = row[Products.mass],
         country = row[Products.country],
+    )
+
+    private fun resultRowToCountry(row: ResultRow) = Country(
+        name = row[Countries.name],
+        distance = row[Countries.distance],
+        president = row[Countries.president],
+        surface = row[Countries.surface],
     )
 
     override suspend fun allCustomers(): List<Customer> = dbQuery {
@@ -78,6 +82,28 @@ class DAOFacadeImpl : DAOFacade {
             .map(::resultRowToProduct)
             .singleOrNull()
     }
+
+    override suspend fun allCountries(): List<Country> = dbQuery {
+        Countries.selectAll().map(::resultRowToCountry)
+    }
+
+    override suspend fun addNewCountry(name: String, distance: Double, president: String, surface: Double): Country? = dbQuery {
+        val toBeInserted = Countries.insert {
+            it[Countries.name] = name
+            it[Countries.distance] = distance
+            it[Countries.president] = president
+            it[Countries.surface] = surface
+        }
+
+        toBeInserted.resultedValues?.singleOrNull()?.let(::resultRowToCountry)
+    }
+
+    override suspend fun country(name: String): Country? = dbQuery{
+        Countries
+            .select {Countries.name eq name}
+            .map(::resultRowToCountry)
+            .singleOrNull()
+    }
 }
 
 val dao: DAOFacade = DAOFacadeImpl().apply {
@@ -85,6 +111,11 @@ val dao: DAOFacade = DAOFacadeImpl().apply {
         if(allCustomers().isEmpty()) {
             addNewCustomer(1, "azer", "bejdżan", "mail.me@xd.xd")
         }
+
+        if(allCountries().isEmpty()) {
+            addNewCountry("Poland", 0.0, "Mr. Andrzej Duda", 312710.0)
+        }
+
         if(allProducts().isEmpty()) {
             addNewProduct(1, "grass", 0.123, "Poland")
         }

@@ -1,12 +1,36 @@
+###
 POST http://127.0.0.1:8080/product
 Content-Type: application/json
 
 {
-  "id": 123123,
+  "id": 1231212332,
   "name": "bigos",
   "mass": "300",
   "country": "Poland"
 }
+
+###
+POST http://127.0.0.1:8080/product
+Content-Type: application/json
+
+{
+  "id": 1534,
+  "name": "bigos",
+  "mass": "300",
+  "country": "Germany"
+}
+
+###
+POST  http://127.0.0.1:8080/country
+Content-Type: application/json
+
+{
+  "name": "Germany",
+  "distance": 300.0,
+  "president": "Frank-Walter Steinmeier",
+  "surface": 357590.0
+}
+
 
 
 

@@ -12,6 +12,7 @@ fun Application.configureRouting() {
     routing {
         customerRouting()
         productRouting()
+        countryRouting()
 //        listOrdersRoute()
 //        getOrderRoute()
 //        totalizeOrderRoute()

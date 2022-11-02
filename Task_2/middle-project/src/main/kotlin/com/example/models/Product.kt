@@ -10,7 +10,7 @@ object Products : Table() {
     val id = integer("id")
     val name = varchar("name", 128)
     val mass = double("mass")
-    val country = varchar("country", 128)
+    val country = reference("country", Countries.name)
 
     override val primaryKey = PrimaryKey(id)
 }

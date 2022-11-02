@@ -1,5 +1,6 @@
 package com.example.dbconnection
 
+import com.example.models.Countries
 import com.example.models.Customers
 import com.example.models.Products
 import kotlinx.coroutines.Dispatchers
@@ -16,7 +17,7 @@ object DatabaseFactory {
         transaction(database) {
             SchemaUtils.create(Customers)
             SchemaUtils.create(Products)
-
+            SchemaUtils.create(Countries)
         }
     }
 
