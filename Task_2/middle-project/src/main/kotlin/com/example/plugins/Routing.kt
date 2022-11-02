@@ -10,11 +10,7 @@ import io.ktor.server.request.*
 fun Application.configureRouting() {
 
     routing {
-        customerRouting()
         productRouting()
         countryRouting()
-//        listOrdersRoute()
-//        getOrderRoute()
-//        totalizeOrderRoute()
     }
 }
