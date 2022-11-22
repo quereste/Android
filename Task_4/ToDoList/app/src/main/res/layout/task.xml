@@ -4,32 +4,34 @@
         <variable name="task" type="com.example.todolist.Task"/>
     </data>
     <LinearLayout
-        android:orientation="vertical"
+        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="10dp">
+        android:layout_height="wrap_content">
 
         <TextView android:layout_width="wrap_content"
             android:id="@+id/task_name"
             android:layout_height="wrap_content"
-            android:layout_wid="wrap_content"
             android:text="@{task.name}"
             android:background="@color/purple_200"
+            android:textSize="18sp"
             />
         <TextView android:layout_width="wrap_content"
             android:id="@+id/task_description"
             android:layout_height="wrap_content"
             android:text="@{task.description}"
-            android:background="@color/purple_500"/>
+            android:background="@color/purple_500"
+            android:textSize="18sp"/>
         <TextView android:layout_width="wrap_content"
             android:id="@+id/task_date"
             android:layout_height="wrap_content"
             android:text="@{task.date}"
-            android:background="@color/purple_700"/>
+            android:background="@color/purple_700"
+            android:textSize="18sp"/>
         <TextView android:layout_width="wrap_content"
             android:id="@+id/task_status"
             android:layout_height="wrap_content"
             android:text="@{task.status}"
-            android:background="@color/teal_200"/>
+            android:background="@color/teal_200"
+            android:textSize="18sp"/>
     </LinearLayout>
 </layout>
