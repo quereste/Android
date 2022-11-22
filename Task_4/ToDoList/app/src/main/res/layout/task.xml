@@ -1,11 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <variable name="task" type="com.example.todolist.Task"/>
+    </data>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="10dp">
 
-<TextView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/task"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:name="com.example.todolist.Task"
-    android:textSize="60sp"
-    android:background="@color/purple_200"
-/>
+        <TextView android:layout_width="wrap_content"
+            android:id="@+id/task_name"
+            android:layout_height="wrap_content"
+            android:layout_wid="wrap_content"
+            android:text="@{task.name}"
+            android:background="@color/purple_200"
+            />
+        <TextView android:layout_width="wrap_content"
+            android:id="@+id/task_description"
+            android:layout_height="wrap_content"
+            android:text="@{task.description}"
+            android:background="@color/purple_500"/>
+        <TextView android:layout_width="wrap_content"
+            android:id="@+id/task_date"
+            android:layout_height="wrap_content"
+            android:text="@{task.date}"
+            android:background="@color/purple_700"/>
+        <TextView android:layout_width="wrap_content"
+            android:id="@+id/task_status"
+            android:layout_height="wrap_content"
+            android:text="@{task.status}"
+            android:background="@color/teal_200"/>
+    </LinearLayout>
+</layout>

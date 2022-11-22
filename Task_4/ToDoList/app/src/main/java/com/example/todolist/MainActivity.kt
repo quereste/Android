@@ -2,24 +2,34 @@ package com.example.todolist
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.ListView
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.FragmentTransaction
 import androidx.fragment.app.add
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.todolist.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
+    lateinit var tasks: ArrayList<Task>
+    private lateinit var binding: ActivityMainBinding;
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setContentView(R.layout.activity_main)
 
-        var taskList: ListView = findViewById(R.id.taskList)
+        val taskList = findViewById<View>(R.id.task_list) as RecyclerView
 
-        val content = listOf("abc", "finish this task", "finish next task")
+        tasks = Task.createTasks()
 
-        val adapter: ArrayAdapter<String> = ArrayAdapter<String>(this, R.layout.task, content)
+        val adapter = Adapter(tasks)
 
         taskList.adapter = adapter
+        taskList.layoutManager = LinearLayoutManager(this)
+
 
     }
 }
