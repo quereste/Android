@@ -3,35 +3,15 @@
     <data>
         <variable name="task" type="com.example.todolist.Task"/>
     </data>
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <TextView android:layout_width="wrap_content"
-            android:id="@+id/task_name"
-            android:layout_height="wrap_content"
-            android:text="@{task.name}"
-            android:background="@color/purple_200"
-            android:textSize="18sp"
-            />
-        <TextView android:layout_width="wrap_content"
-            android:id="@+id/task_description"
-            android:layout_height="wrap_content"
-            android:text="@{task.description}"
-            android:background="@color/purple_500"
-            android:textSize="18sp"/>
-        <TextView android:layout_width="wrap_content"
-            android:id="@+id/task_date"
-            android:layout_height="wrap_content"
-            android:text="@{task.date}"
-            android:background="@color/purple_700"
-            android:textSize="18sp"/>
-        <TextView android:layout_width="wrap_content"
-            android:id="@+id/task_status"
-            android:layout_height="wrap_content"
-            android:text="@{task.status}"
-            android:background="@color/teal_200"
-            android:textSize="18sp"/>
-    </LinearLayout>
+    <TextView android:layout_width="match_parent"
+        android:id="@+id/task_name"
+        android:layout_gravity="center"
+        android:padding="3dp"
+        android:layout_margin="4dp"
+        android:layout_height="50dp"
+        android:textAlignment="center"
+        android:text="@{task.name}"
+        android:background="@color/purple_200"
+        android:textSize="32sp"
+        />
 </layout>
