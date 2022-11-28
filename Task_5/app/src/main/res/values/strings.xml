@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">Shop</string>
+    <string name="rectangle">Rectangle</string>
+    <string name="square">Square</string>
+    <string name="triangle">Triangle</string>
+    <string name="ellipse">Ellipse</string>
+    <string name="segment">Segment</string>
+    <string name="point">Point</string>
+    <string name="circle">Circle</string>
+    <string name="rectangleD">Rectangle is a customers\' top-notch view, due to it\'s multiple usage cases.</string>
+    <string name="squareD">Square - quite perfect in its simplicity, may be applied when needed and when not.</string>
+    <string name="triangleD">Triangle\'s strength might actually come from non-trivial fact of possessing exactly three sides.</string>
+    <string name="ellipseD">Ellipse is a lightweight equivalent of circle, with slight performance bonuses.</string>
+    <string name="segmentD">Segment limits itself to kinda one dimensional space, which comes at some cost and with limited benefits.</string>
+    <string name="pointD">Point - point for you!</string>
+    <string name="circleD">Circle\'s attracts many customers\' view due to its well-rounded properties.</string>
+    <string name="see_details">See details</string>
+    <string name="go_back">Go back</string>
+</resources>
