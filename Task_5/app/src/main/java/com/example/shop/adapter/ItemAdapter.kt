@@ -16,11 +16,14 @@ import com.example.shop.DetailsActivity
 import com.example.shop.R
 import com.example.shop.model.Item
 
-class ItemAdapter(private val context: Context, private val dataset: List<Item>) : RecyclerView.Adapter<ItemAdapter.ItemViewHolder>() {
+class ItemAdapter(private val context: Context, private var dataset: List<Item>) : RecyclerView.Adapter<ItemAdapter.ItemViewHolder>() {
     class ItemViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
         val textView: TextView = view.findViewById(R.id.item_name)
         val imageView: ImageView = view.findViewById(R.id.item_image)
-        val button: Button = view.findViewById(R.id.item_details)
+        val detailsButton: Button = view.findViewById(R.id.item_details)
+        val addButton: Button = view.findViewById(R.id.add)
+        val subtractButton: Button = view.findViewById(R.id.subtract)
+        val currentNumberTextView: TextView = view.findViewById(R.id.current_state)
     }
 
 
@@ -41,14 +44,27 @@ class ItemAdapter(private val context: Context, private val dataset: List<Item>)
         val description = context.resources.getString(item.descriptionId)
 
         holder.imageView.setImageResource(item.imageId)
-        holder.button.setOnClickListener() {
-            Toast.makeText(this.context, description, Toast.LENGTH_LONG).show()
+        holder.detailsButton.setOnClickListener() {
             val intent: Intent = Intent(this.context, DetailsActivity::class.java)
 
             intent.putExtra("name", context.resources.getString(item.nameId))
             intent.putExtra("description", context.resources.getString(item.descriptionId))
 
             this.context.startActivity(intent)
+        }
+
+        holder.addButton.setOnClickListener() {
+            item.number += 1
+            holder.currentNumberTextView.text = item.number.toString()
+            Toast.makeText(this.context, "Added one product to your bucket", Toast.LENGTH_SHORT).show()
+        }
+
+        holder.subtractButton.setOnClickListener() {
+            if (item.number > 0) {
+                item.number -= 1
+                holder.currentNumberTextView.text = item.number.toString()
+                Toast.makeText(this.context, "Removed one product from your bucket", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 

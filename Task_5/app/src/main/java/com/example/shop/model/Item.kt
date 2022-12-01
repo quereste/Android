@@ -7,4 +7,5 @@ data class Item(
     @StringRes val nameId: Int,
     @StringRes val descriptionId: Int,
     @DrawableRes val imageId: Int,
+    var number: Int,
 )

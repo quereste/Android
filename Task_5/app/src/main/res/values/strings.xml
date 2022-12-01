@@ -16,4 +16,7 @@
     <string name="circleD">Circle\'s attracts many customers\' view due to its well-rounded properties.</string>
     <string name="see_details">See details</string>
     <string name="go_back">Go back</string>
+    <string name="add">+</string>
+    <string name="subtract">-</string>
+    <string name="init_number">0</string>
 </resources>
