@@ -9,9 +9,10 @@ class Item() : RealmObject {
     var id: ObjectId = ObjectId.create()
     var name: String = ""
     var description: String = ""
-    var category: Int = 0
+    var category: Category? = null
+    var numberOfProducts: Int = 0
 
-    constructor(name: String = "", description: String = "", category: Int = 0) : this() {
+    constructor(name: String = "", description: String = "", category: Category) : this() {
         this.name = name
         this.description = description
         this.category = category
