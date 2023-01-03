@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">app</string>
+    <string name="log_in">Log in</string>
+    <string name="register">Register</string>
+    <string name="submit">Submit</string>
+    <string name="go_back">Go back</string>
+    <string name="password">password</string>
+    <string name="user">user</string>
+    <string name="log_out">Log out</string>
+    <string name="plus">+</string>
+    <string name="great_product">Great product</string>
+    <string name="pay">Pay</string>
+    <string name="_7_99">7.99</string>
+    <string name="card_number">card number</string>
+    <string name="cvc">CVC</string>
+    <string name="card_expiration_date">card expiration date</string>
+    <string name="payment_successful">Payment successful</string>
+</resources>
